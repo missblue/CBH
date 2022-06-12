@@ -1,0 +1,55 @@
+package com.priyankatest;
+
+import com.priyanka.BasePage;
+import com.priyanka.HomePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class AmazonTest1 extends BasePage {
+
+    static WebDriver driver;
+    static HomePage fields;
+
+    @BeforeClass
+    public void setUp(){
+        driver = initDriver();
+        fields = new HomePage(driver);
+    }
+
+    //@AfterClass
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test
+    public void checkSamsungTV(){
+        driver.get(fields.HomePageUrl);
+        fields.clickHamburgerMenu();
+        fields.clickSubMenuforTV();
+        fields.clickTelevisions();
+        fields.waitForUrlChange("television");
+        fields.checkSamsungBrand();
+        fields.selectSortOption("Price: High to Low");
+        fields.clickOnGivenTVItem(1);
+        Assert.assertEquals(driver.getWindowHandles().size(),2);
+
+        String originalWindow = driver.getWindowHandle();
+        for(String windowhandle : driver.getWindowHandles()){
+            if((!windowhandle.equalsIgnoreCase(originalWindow))){
+                driver.switchTo().window(windowhandle);
+                break;
+            }
+        }
+        Assert.assertTrue(driver.findElement(By.cssSelector("#feature-bullets")).isDisplayed());
+        System.out.println(fields.getItemDesc());
+
+
+
+    }
+}

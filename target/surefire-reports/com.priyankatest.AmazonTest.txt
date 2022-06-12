@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.priyankatest.AmazonTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.155 sec <<< FAILURE!
+checkSamsungTV(com.priyankatest.AmazonTest)  Time elapsed: 0.005 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "com.priyankatest.AmazonTest.driver" is null
+	at com.priyankatest.AmazonTest.checkSamsungTV(AmazonTest.java:26)
+
+tearDown(com.priyankatest.AmazonTest)  Time elapsed: 0.007 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.quit()" because "com.priyankatest.AmazonTest.driver" is null
+	at com.priyankatest.AmazonTest.tearDown(AmazonTest.java:31)
+
