@@ -3,9 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/priyankakothawade/IdeaProjects/ClipBoardHealthAssessment">
         <classes>
-            <class name="com.priyankatest.AmazonTest"/>
-
-
+            <class name="com.priyankatest.AmazonTest1"/>
         </classes>
     </test>
 </suite>

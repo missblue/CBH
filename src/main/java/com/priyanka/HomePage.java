@@ -14,19 +14,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
     WebDriver driver;
     public final String HomePageUrl = "https://www.amazon.in/";
     public HomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
-
     }
     @FindBy(css = "#nav-hamburger-menu") WebElement field_hamburgermenu;
-    @FindBy(linkText = "TV, Appliances, Electronics") WebElement field_subMenuforTV;
-    @FindBy(linkText = "Televisions") WebElement field_Television;
     @FindBy(linkText = "Samsung") WebElement field_SamsungBrand;
     @FindBy(css = "#s-result-sort-select") WebElement field_sortButton;
     //@FindBy()
@@ -36,13 +32,6 @@ public class HomePage {
     //METHODS//
     public void clickHamburgerMenu(){
         field_hamburgermenu.click();
-    }
-    public void clickSubMenuforTV(){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click()",field_subMenuforTV);
-    }
-    public void clickTelevisions(){
-        field_Television.click();
     }
     public void waitForUrlChange(String text){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
@@ -58,11 +47,16 @@ public class HomePage {
         item.selectByVisibleText(text);
     }
     public void clickOnGivenTVItem(int idx){
+        System.out.println(field_TVList.size());
         field_TVList.get(idx).click();
     }
-
     public String getItemDesc(){
         return field_itemDescription.getText();
+    }
+    public void clickOnDeptByLinkText(String deptName){
+        WebElement element = driver.findElement(By.linkText(deptName));
+        scrollToElement(driver,element);
+        element.click();
     }
 
 }

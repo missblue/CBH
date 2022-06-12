@@ -21,24 +21,25 @@ public class AmazonTest1 extends BasePage {
         driver = initDriver();
         fields = new HomePage(driver);
     }
-
-    //@AfterClass
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }
-
     @Test
     public void checkSamsungTV(){
         driver.get(fields.HomePageUrl);
         fields.clickHamburgerMenu();
-        fields.clickSubMenuforTV();
-        fields.clickTelevisions();
+        fields.clickOnDeptByLinkText("TV, Appliances, Electronics");
+        fields.clickOnDeptByLinkText("Televisions");
         fields.waitForUrlChange("television");
-        fields.checkSamsungBrand();
+        fields.clickOnDeptByLinkText("Samsung");
         fields.selectSortOption("Price: High to Low");
+        //click on 2nd item in the list
         fields.clickOnGivenTVItem(1);
+        //assert that item opened in new tab
         Assert.assertEquals(driver.getWindowHandles().size(),2);
 
+        //switch to new window//
         String originalWindow = driver.getWindowHandle();
         for(String windowhandle : driver.getWindowHandles()){
             if((!windowhandle.equalsIgnoreCase(originalWindow))){
